@@ -1,4 +1,4 @@
-function getOutlinerData() {
+function getOutlinerData(callback) {
   const ep = 'http://3bfc4adf.ngrok.io/outliner';
   fetch(ep, {
     method: 'GET'
@@ -8,10 +8,11 @@ function getOutlinerData() {
         return res.json();
       } else {
         console.error('res !ok');
+        callback({err: 'res'});
       }
     })
     .then(response => {
-      console.log(response);
+      callback(null, response);
     })
 }
 
