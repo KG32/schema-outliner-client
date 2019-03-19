@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import './schemaOutliner.css';
 import getOutlinerData from './api/getOutlinerData';
 import outline from './functions/outline'
+import CollectionOutline from './components/collectionOutline/collectionOutline'
 
 
 class SchemaOutliner extends Component {
@@ -9,7 +11,7 @@ class SchemaOutliner extends Component {
     super(props);
     this.state = {
       loading: true,
-      data: {}
+      collections: []
     }
   }
 
@@ -17,7 +19,7 @@ class SchemaOutliner extends Component {
     getOutlinerData((err, data) => {
       if(!err) {
         const outlinedData = outline(data);
-        this.setState({outlinedData});
+        this.setState({collections: outlinedData});
       } else {
         console.error(err);
       }
@@ -30,8 +32,19 @@ class SchemaOutliner extends Component {
     return (
       <div id='schemaOutliner'>
         <h1>Schema Outliner</h1>
-        {this.state.loading && <p>Loading...</p>}
-
+        {(() => {
+          if(this.state.loading) {
+            return <p>Loading...</p>
+          } else {
+            return (
+              <div id='collectionsOutlines'>
+                {this.state.collections.map(collection => {
+                  return <CollectionOutline key={collection.name} collection={collection} />
+                })}
+              </div>
+            )
+          }
+        })()}
       </div>
     )
   }

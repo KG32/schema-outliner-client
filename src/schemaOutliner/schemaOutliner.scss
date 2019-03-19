@@ -1,4 +1,11 @@
 #schemaOutliner {
   display: flex;
-
+  flex-direction: column;
+  padding: 10px;
+  #collectionsOutlines {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
 }
