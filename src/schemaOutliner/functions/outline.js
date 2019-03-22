@@ -4,7 +4,8 @@ function outline(data) {
     const collection = data[i];
     const outlinedCollection = {
       name: collection.name,
-      keys: []
+      keys: [],
+      docsCount: collection.docs.length
     };
     const schemaKeys = {};
     const docs = collection.docs;

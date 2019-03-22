@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './schemaOutliner.css';
-import getOutlinerData from './api/getOutlinerData';
+import getOutlinerData, {endpoint} from './api/getOutlinerData';
 import outline from './functions/outline'
 import CollectionOutline from './components/collectionOutline/collectionOutline'
 
@@ -11,7 +11,8 @@ class SchemaOutliner extends Component {
     super(props);
     this.state = {
       loading: true,
-      collections: []
+      collections: [],
+      source: ''
     }
   }
 
@@ -31,7 +32,7 @@ class SchemaOutliner extends Component {
   render() {
     return (
       <div id='schemaOutliner'>
-        <h1>Schema Outliner</h1>
+        <h1>Schema Outliner <span style={{fontSize: '12px'}}>({endpoint})</span></h1>
         {(() => {
           if(this.state.loading) {
             return <p>Loading...</p>

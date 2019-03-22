@@ -8,14 +8,14 @@ class CollectionOutline extends Component {
     return (
       <div className='collection-outline'>
         <div className='outline-top-bar'>
-          <p className='collection-name'>{collection.name}</p>
+          <p className='collection-name'>{collection.name} ({collection.docsCount})</p>
         </div>
         <ul className='outline-content'>
           {collection.keys.map((key) => {
             let className = 'outline-key';
             if(key.percentage < 100) className = className+' warning';
             return (
-              <li className={className} key={`${collection.name}_${key.keyName}`}>{key.keyName}: {key.percentage}%</li>
+              <li className={className} key={`${collection.name}_${key.keyName}`}>{key.keyName}: {key.percentage}% {key.percentage<100 ? `(${key.count})` : ''}</li>
             )
           })}
         </ul>

@@ -1,7 +1,9 @@
+export const endpoint = 'http://localhost:3000/outliner';
+// export const endpoint = 'https://mrr.bike/outliner';
+
+
 function getOutlinerData(callback) {
-  const ep = 'http://localhost:3000/outliner';
-  // const ep = 'https://mrr.bike/outliner';
-  fetch(ep, {
+  fetch(endpoint, {
     method: 'GET'
   })
     .then(res => {
