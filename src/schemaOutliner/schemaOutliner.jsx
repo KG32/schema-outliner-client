@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './schemaOutliner.scss';
 import getOutlinerData, {endpoint} from './api/getOutlinerData';
-import outline from './functions/outline'
 import CollectionOutline from './components/collectionOutline/collectionOutline'
 
 
@@ -16,16 +15,17 @@ class SchemaOutliner extends Component {
     }
   }
 
-  componentDidMount() {
-    getOutlinerData((err, data) => {
-      if(!err) {
-        const outlinedData = outline(data);
-        this.setState({collections: outlinedData});
-      } else {
-        console.error(err);
-      }
-      this.setState({loading: false});
-    });
+  async componentDidMount() {
+    try {
+      const outlinerData = await getOutlinerData();
+      this.setState({ collections: outlinerData.outlinedCollections }, () => {
+        this.setState({ loading: false });
+      });
+    } catch(e) {
+      console.error(e);
+      this.setState({ loading: false });
+    }
+
   }
 
 
