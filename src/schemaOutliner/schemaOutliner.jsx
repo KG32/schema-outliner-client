@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './schemaOutliner.css';
+import './schemaOutliner.scss';
 import getOutlinerData, {endpoint} from './api/getOutlinerData';
 import outline from './functions/outline'
 import CollectionOutline from './components/collectionOutline/collectionOutline'

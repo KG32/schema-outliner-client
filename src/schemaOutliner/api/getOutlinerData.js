@@ -1,5 +1,4 @@
 export const endpoint = 'http://localhost:3000/outliner';
-// export const endpoint = 'https://mrr.bike/outliner';
 
 
 function getOutlinerData(callback) {
